@@ -17,7 +17,7 @@ class _WebViewStackState extends State<WebViewStack> {
   void initState() {
     super.initState();
     widget.controller
-      ..setNavigationDelegate(              // Modify this line to use .. instead of .
+      ..setNavigationDelegate(
         NavigationDelegate(
           onPageStarted: (url) {
             setState(() {
@@ -50,7 +50,16 @@ class _WebViewStackState extends State<WebViewStack> {
           },
         ),
       )
-      ..setJavaScriptMode(JavaScriptMode.unrestricted);        // Add this line
+      // Modify from here...
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..addJavaScriptChannel(
+        'SnackBar',
+        onMessageReceived: (message) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(message.message)));
+        },
+      );
+      // ...to here.
   }
 
   @override
