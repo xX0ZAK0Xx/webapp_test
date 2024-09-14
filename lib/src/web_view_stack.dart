@@ -69,10 +69,10 @@ class _WebViewStackState extends State<WebViewStack> {
         WebViewWidget(
           controller: widget.controller,
         ),
-        if (loadingPercentage < 100)
-          LinearProgressIndicator(
-            value: loadingPercentage / 100.0,
-          ),
+        // if (loadingPercentage < 100)
+        //   LinearProgressIndicator(
+        //     value: loadingPercentage / 100.0,
+        //   ),
       ],
     );
   }
