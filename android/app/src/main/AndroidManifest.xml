@@ -3,7 +3,7 @@
 
     <application
         android:hardwareAccelerated="true"
-        android:label="test_web"
+        android:label="Tariqa Abululayia Siddiqia"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
