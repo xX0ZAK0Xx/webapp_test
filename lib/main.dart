@@ -7,6 +7,7 @@ import 'src/web_view_stack.dart';
 void main() {
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true),
       home: const WebViewApp(),
     ),
@@ -21,7 +22,6 @@ class WebViewApp extends StatefulWidget {
 }
 
 class _WebViewAppState extends State<WebViewApp> {
-  // Add from here...
   late final WebViewController controller;
 
   @override
@@ -32,20 +32,55 @@ class _WebViewAppState extends State<WebViewApp> {
         Uri.parse('https://abululayia-siddiqia.org'),
       );
   }
-  // ...to here.
+
+  Future<bool> _onWillPop() async {
+    if (await controller.canGoBack()) {
+      await controller.goBack();
+      return false; // Prevent app from closing
+    } else {
+      return await _showExitConfirmationDialog();
+    }
+  }
+
+  Future<bool> _showExitConfirmationDialog() async {
+    return await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Exit App'),
+        content: const Text('Do you want to close the app?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false), // Stay in the app
+            child: const Text('No'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true), // Close the app
+            child: const Text('Yes'),
+          ),
+        ],
+      ),
+    ) ??
+    false; // If the user dismisses the dialog, return false
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter WebView'),
-        // Add from here...
-        actions: [
-          NavigationControls(controller: controller),
-        ],
-        // ...to here.
+    return WillPopScope(
+      onWillPop: _onWillPop, // Handle back button press
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: const Text('Tariqa Abululayia Siddiqia'),
+        ),
+        body: WebViewStack(controller: controller),  // Web view stack
+        bottomNavigationBar: BottomAppBar(
+          height: 60,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: NavigationControls(controller: controller),  // Navigation moved here
+          ),
+        ),
       ),
-      body: WebViewStack(controller: controller),       // MODIFY
     );
   }
 }

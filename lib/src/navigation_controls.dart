@@ -9,17 +9,18 @@ class NavigationControls extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
         IconButton(
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () async {
-            final messenger = ScaffoldMessenger.of(context);
+            // final messenger = ScaffoldMessenger.of(context);
             if (await controller.canGoBack()) {
               await controller.goBack();
             } else {
-              messenger.showSnackBar(
-                const SnackBar(content: Text('No back history item')),
-              );
+              // messenger.showSnackBar(
+              //   const SnackBar(content: Text('No back history item')),
+              // );
               return;
             }
           },
@@ -27,13 +28,13 @@ class NavigationControls extends StatelessWidget {
         IconButton(
           icon: const Icon(Icons.arrow_forward_ios),
           onPressed: () async {
-            final messenger = ScaffoldMessenger.of(context);
+            // final messenger = ScaffoldMessenger.of(context);
             if (await controller.canGoForward()) {
               await controller.goForward();
             } else {
-              messenger.showSnackBar(
-                const SnackBar(content: Text('No forward history item')),
-              );
+              // messenger.showSnackBar(
+              //   const SnackBar(content: Text('No forward history item')),
+              // );
               return;
             }
           },
