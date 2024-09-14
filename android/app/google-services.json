@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "80714163076",
+    "project_id": "push-notification-4425f",
+    "storage_bucket": "push-notification-4425f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:80714163076:android:74d194fc1ef756fcd8f3d1",
+        "android_client_info": {
+          "package_name": "com.example.tariqa_abululayia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl3_IIDMZwArNSa6VY99v3GuCcq76phQk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

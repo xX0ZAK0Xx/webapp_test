@@ -5,10 +5,16 @@ import 'package:webview_flutter/webview_flutter.dart';  // ADD
 
 import 'src/navigation_controls.dart';                  // ADD
 import 'src/web_view_stack.dart';
+import 'firebase_options.dart';
+
+// ...
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
   OneSignal.initialize("8e00bb15-3ca4-4b50-8d9a-d5e5a0f479eb");
   OneSignal.Notifications.requestPermission(true);
