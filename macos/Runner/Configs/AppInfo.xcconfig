@@ -8,7 +8,7 @@
 PRODUCT_NAME = test_web
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.testWeb
+PRODUCT_BUNDLE_IDENTIFIER = com.tariqa.testWeb
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2024 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2024 com.tariqa. All rights reserved.

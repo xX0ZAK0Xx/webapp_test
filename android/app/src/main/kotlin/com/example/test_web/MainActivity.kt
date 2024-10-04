@@ -1,4 +1,4 @@
-package com.example.tariqa_abululayia
+package com.tariqa.tariqa_abululayia
 
 import io.flutter.embedding.android.FlutterActivity
 

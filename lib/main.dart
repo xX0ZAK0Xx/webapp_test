@@ -7,9 +7,6 @@ import 'src/navigation_controls.dart';                  // ADD
 import 'src/web_view_stack.dart';
 import 'firebase_options.dart';
 
-// ...
-
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -41,6 +38,7 @@ class _WebViewAppState extends State<WebViewApp> {
   void initState() {
     super.initState();
     controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..loadRequest(
         Uri.parse('https://abululayia-siddiqia.org'),
       );
@@ -72,8 +70,7 @@ class _WebViewAppState extends State<WebViewApp> {
           ),
         ],
       ),
-    ) ??
-    false; // If the user dismisses the dialog, return false
+    ) ?? false; // If the user dismisses the dialog, return false
   }
 
   @override
