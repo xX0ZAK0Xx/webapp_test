@@ -141,39 +141,96 @@ class LaunchWebViewState extends State<LaunchWebView> {
             },
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.arrow_back),
-              label: 'Back',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.refresh),
-              label: 'Reload',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.arrow_forward),
-              label: 'Forward',
-            ),
-          ],
-          onTap: (index) async {
-            switch (index) {
-              case 0:
-                if (await _webViewController?.canGoBack() ?? false) {
-                  _webViewController?.goBack();
-                }
-                break;
-              case 1:
-                _webViewController?.reload();
-                break;
-              case 2:
-                if (await _webViewController?.canGoForward() ?? false) {
-                  _webViewController?.goForward();
-                }
-                break;
-            }
-          },
+        bottomNavigationBar: CustomBottomNavigationBar(
+          canGoBack: () => _webViewController?.canGoBack() ?? Future.value(false),
+          canGoForward: () => _webViewController?.canGoForward() ?? Future.value(false),
+          goBack: () => _webViewController?.goBack(),
+          reload: () => _webViewController?.reload(),
+          goForward: () => _webViewController?.goForward(),
         ),
+        // bottomNavigationBar: BottomNavigationBar(
+        //   items: const [
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.arrow_back, color: Colors.black,),
+        //       label: '',
+        //     ),
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.refresh, color: Colors.black),
+        //       label: '',
+        //     ),
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.arrow_forward, color: Colors.black),
+        //       label: '',
+        //     ),
+        //   ],
+        //   onTap: (index) async {
+        //     switch (index) {
+        //       case 0:
+        //         if (await _webViewController?.canGoBack() ?? false) {
+        //           _webViewController?.goBack();
+        //         }
+        //         break;
+        //       case 1:
+        //         _webViewController?.reload();
+        //         break;
+        //       case 2:
+        //         if (await _webViewController?.canGoForward() ?? false) {
+        //           _webViewController?.goForward();
+        //         }
+        //         break;
+        //     }
+        //   },
+        // ),
+      ),
+    );
+  }
+}
+
+class CustomBottomNavigationBar extends StatelessWidget {
+  final Future<bool> Function()? canGoBack;
+  final Future<bool> Function()? canGoForward;
+  final VoidCallback? goBack;
+  final VoidCallback? reload;
+  final VoidCallback? goForward;
+
+  const CustomBottomNavigationBar({
+    Key? key,
+    this.canGoBack,
+    this.canGoForward,
+    this.goBack,
+    this.reload,
+    this.goForward,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white, // Background color of the navigation bar
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () async {
+              if (await canGoBack?.call() ?? false) {
+                goBack?.call();
+              }
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.refresh, color: Colors.black),
+            onPressed: reload,
+          ),
+          IconButton(
+            icon: const Icon(Icons.arrow_forward, color: Colors.black),
+            onPressed: () async {
+              if (await canGoForward?.call() ?? false) {
+                goForward?.call();
+              }
+            },
+          ),
+        ],
       ),
     );
   }
