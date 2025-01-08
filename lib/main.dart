@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'firebase_options.dart';
 import 'src/launch_webview_new.dart';
-import 'src/launch_webview_prev.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
