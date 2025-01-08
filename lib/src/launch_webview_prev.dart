@@ -4,17 +4,17 @@ import "package:flutter/material.dart";
 import "package:flutter_inappwebview/flutter_inappwebview.dart";
 import "package:url_launcher/url_launcher.dart";
 
-class LaunchWebView extends StatefulWidget {
+class LaunchWebViewPrev extends StatefulWidget {
   final String launchUrl;
   final String title;
 
-  const LaunchWebView({super.key, required this.launchUrl, required this.title});
+  const LaunchWebViewPrev({super.key, required this.launchUrl, required this.title});
 
   @override
-  LaunchWebViewState createState() => LaunchWebViewState();
+  LaunchWebViewPrevState createState() => LaunchWebViewPrevState();
 }
 
-class LaunchWebViewState extends State<LaunchWebView> {
+class LaunchWebViewPrevState extends State<LaunchWebViewPrev> {
   late final InAppWebViewController? _webViewController;
   late final PullToRefreshController _pullToRefreshController;
   final GlobalKey webViewKey = GlobalKey();

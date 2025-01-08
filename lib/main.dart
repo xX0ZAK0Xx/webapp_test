@@ -2,7 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'firebase_options.dart';
-import 'src/launch_webview.dart';
+import 'src/launch_webview_new.dart';
+import 'src/launch_webview_prev.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +17,7 @@ Future<void> main() async {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true),
-      home: const LaunchWebView(
+      home: const LaunchWebViewNew(
         title: "Tariqa Abululayia Siddiqia",
         launchUrl: "https://abululayia-siddiqia.org/securedsite/",
       ),
