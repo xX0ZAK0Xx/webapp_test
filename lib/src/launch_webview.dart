@@ -17,6 +17,7 @@ class LaunchWebView extends StatefulWidget {
 class LaunchWebViewState extends State<LaunchWebView> {
   late final InAppWebViewController? _webViewController;
   late final PullToRefreshController _pullToRefreshController;
+  final GlobalKey webViewKey = GlobalKey();
 
   final ValueNotifier<String> _currentUrl = ValueNotifier<String>('');
   final ValueNotifier<double> _progress = ValueNotifier<double>(0.0);
@@ -100,8 +101,8 @@ class LaunchWebViewState extends State<LaunchWebView> {
         ),
         body: SafeArea(
           child: InAppWebView(
-            initialUrlRequest:
-                URLRequest(url: WebUri.uri(Uri.parse(_currentUrl.value))),
+            key: webViewKey,
+            initialUrlRequest: URLRequest(url: WebUri.uri(Uri.parse(_currentUrl.value))),
             initialOptions: options,
             pullToRefreshController: _pullToRefreshController,
             onWebViewCreated: (controller) {
