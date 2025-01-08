@@ -18,7 +18,7 @@ Future<void> main() async {
       theme: ThemeData(useMaterial3: true),
       home: const LaunchWebView(
         title: "Tariqa Abululayia Siddiqia",
-        launchUrl: "https://abululayia-siddiqia.org",
+        launchUrl: "https://abululayia-siddiqia.org/securedsite/",
       ),
     ),
   );
