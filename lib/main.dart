@@ -12,8 +12,22 @@ Future<void> main() async {
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
   OneSignal.initialize("8e00bb15-3ca4-4b50-8d9a-d5e5a0f479eb");
   OneSignal.Notifications.requestPermission(true);
+
+  OneSignal.Notifications.addClickListener((event) {
+    event.preventDefault();
+    navigatorKey.currentState?.push(
+      MaterialPageRoute(
+        builder: (context) => const LaunchWebViewNew(
+          title: "Tariqa Abululayia Siddiqia",
+          launchUrl: "https://abululayia-siddiqia.org/securedsite/",
+        ),
+      ),
+    );
+  });
+
   runApp(
     MaterialApp(
+      navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true),
       home: const LaunchWebViewNew(
@@ -23,3 +37,5 @@ Future<void> main() async {
     ),
   );
 }
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();

@@ -36,16 +36,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   onesignal_flutter: ^5.2.5
-  firebase_core: ^2.25.5
+  firebase_core: ^4.3.0
   flutter_inappwebview: ^6.0.0
   url_launcher: ^6.3.1
-
-dependency_overrides:
-  flutter_inappwebview_android:
-    git:
-      url: https://github.com/holzgeist/flutter_inappwebview
-      path: flutter_inappwebview_android
-      ref: d89b1d32638b49dfc58c4b7c84153be0c269d057
 
 dev_dependencies:
   flutter_test:
@@ -56,7 +49,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^4.0.0
+  flutter_lints: ^6.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
